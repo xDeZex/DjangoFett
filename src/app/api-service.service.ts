@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, ObservableInput, firstValueFrom, of, throwError } from 'rxjs';
-import { catchError, retry, timeout } from 'rxjs/operators';
+import { catchError, map, retry, shareReplay, timeout } from 'rxjs/operators';
 import { ReturnStatement } from '@angular/compiler';
 
 @Injectable({
@@ -9,42 +9,45 @@ import { ReturnStatement } from '@angular/compiler';
 })
 export class ApiServiceService {
 
-  apiURL = 'http://localhost:8000/api/v1'
+  apiURL = 'https://xdezex.duckdns.org:5001/api/v1'
+
+  clockCache: Observable<any> |null = null;
+  indicatorCache: Observable<any> |null = null;
 
   httpOptions = {
-    headers: new HttpHeaders({
-    })
+    headers: new HttpHeaders({})
   }
-
-  clockCache: any | null = null;
-  indicatorCache: any | null = null;
 
   constructor(private http: HttpClient,) { }
 
 
   getClock(): Observable<any>{
+    if(!this.clockCache){
+      let ret = this.http.get<any>(`${this.apiURL}/index`, this.httpOptions).pipe(
+        map(response => response)
+      );
+      this.clockCache = ret.pipe(
+        shareReplay()
+      )
+    }
+    
 
-    if(this.clockCache)
-      return of(this.clockCache);
-
-    let ret = this.http.get<any>(`${this.apiURL}/index`, this.httpOptions).pipe(
-      catchError(this.handleError.bind(this))
-    );
-
-    return ret
+    return this.clockCache
 
   }
 
   getIndicator(): Observable<any>{
+    if(!this.indicatorCache){
+      let ret = this.http.get<any>(`${this.apiURL}/indicator`, this.httpOptions).pipe(
+        map(response => response)
+      );
+      this.indicatorCache = ret.pipe(
+        shareReplay()
+      )
+    }
+    
 
-    if(this.indicatorCache)
-      return of(this.indicatorCache);
-
-    let ret = this.http.get<any>(`${this.apiURL}/indicator`, this.httpOptions).pipe(
-      catchError(this.handleError.bind(this))
-    );
-
-    return ret
+    return this.indicatorCache
   }
 
   handleError(error: HttpErrorResponse) {

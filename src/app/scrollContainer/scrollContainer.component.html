@@ -16,6 +16,10 @@
         [scrollDisplayGap]="6"
         [leftFixed]="true"
         [overhang]="windowHeight/3"
+        (cacheClockOut)="cacheClock"
+        [cacheClockIn]="cacheClock"
+        (cacheTimeSeriesOut)="cacheTimeSeries"
+        [cacheTimeSeriesIn]="cacheTimeSeries"
     ></app-clock>
 
     <app-intro-text
@@ -32,11 +36,15 @@
         [leftFixed]="true"
     ></app-intro-text>
 
-    <app-clock 
+    <!-- <app-clock 
         [graphName]="'endClock'"
         id="clock" 
         [scrollLower]="windowHeight * 5"
         [scrollUpper]="windowHeight * 6"
         [scroll]="scroll" 
-    ></app-clock>
+        (cacheClockOut)="cacheClock = $event"
+        [cacheClockIn]="cacheClock"
+        (cacheTimeSeriesOut)="cacheTimeSeries = $event"
+        [cacheTimeSeriesIn]="cacheTimeSeries"
+    ></app-clock> -->
 </div>

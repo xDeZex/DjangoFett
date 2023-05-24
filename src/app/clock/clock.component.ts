@@ -13,6 +13,10 @@ import { BaseGraphComponent } from '../base-graph/base-graph.component';
 export class ClockComponent extends BaseGraphComponent{
   @ViewChild('clock', {static: true, read: ElementRef}) clockContainer!: ElementRef
   
+  @Input() cacheClockIn: any | null = null;
+  @Output() cacheClockOut = new EventEmitter<any>();
+  @Input() cacheTimeSeriesIn: any | null = null;
+  @Output() cacheTimeSeriesOut = new EventEmitter<any>();
 
   @Input() scrollMonthLower: string | null = null
   @Input() scrollMonthUpper: string | null = null
@@ -147,34 +151,38 @@ export class ClockComponent extends BaseGraphComponent{
     this.height = Math.min(this.height, window.innerHeight - (7 * 25 + 20) - window.innerHeight / 5);
     this.width = this.height;
 
-    this.createSvg()  
+    this.createSvg()
 
-    ret.subscribe(data => {
-      this.clock = {
-        ArbetadeTimmar: data["Arbetade timmar"], 
-        Detaljhandel: data["Detaljhandel sällanköpsvaror"], 
-        IndustrinsOrderingång: data["Industrins orderingång"], 
-        Sysselsättning: data["Sysselsättning"], 
-        BNPKvartal: data["BNP kvartal"], 
-        BNPMånad: data["BNP-indikator månad"], 
-        HushållensKonfindens: data["Hushållens konfidensindikator"], 
-        HushållensKonsumtion: data["Hushållens konsumtion"], 
-        Lastbilar: data["Nyregistrerade lastbilar"], 
-        Personbilar: data["Nyregistrerade personbilar"], 
-        NäringslivetsEfterfrågan: data["Näringslivets efterfrågan"], 
-        NäringslivetsProduktion: data["Näringslivets produktion"], 
-        Varuexport: data["Varuexport"], 
-        Varuimport: data["Varuimport"],
-      };
+      ret.subscribe(data => {
+        this.clock = {
+          ArbetadeTimmar: data["Arbetade timmar"], 
+          Detaljhandel: data["Detaljhandel sällanköpsvaror"], 
+          IndustrinsOrderingång: data["Industrins orderingång"], 
+          Sysselsättning: data["Sysselsättning"], 
+          BNPKvartal: data["BNP kvartal"], 
+          BNPMånad: data["BNP-indikator månad"], 
+          HushållensKonfindens: data["Hushållens konfidensindikator"], 
+          HushållensKonsumtion: data["Hushållens konsumtion"], 
+          Lastbilar: data["Nyregistrerade lastbilar"], 
+          Personbilar: data["Nyregistrerade personbilar"], 
+          NäringslivetsEfterfrågan: data["Näringslivets efterfrågan"], 
+          NäringslivetsProduktion: data["Näringslivets produktion"], 
+          Varuexport: data["Varuexport"], 
+          Varuimport: data["Varuimport"],
+        };
+  
+        this.timeSeries = data["time_series"]
 
-      this.upperMonth = this.clock.Sysselsättning.length;
-      this.timeSeries = data["time_series"]
-
-      this.updateScale()
-      this.drawClock()
-
-      this.ngOnChanges()
-    })
+        this.cacheClockOut.emit(this.clock)
+        this.cacheTimeSeriesOut.emit(this.timeSeries)
+  
+        this.upperMonth = this.clock.Sysselsättning.length;
+  
+        this.updateScale()
+        this.drawClock()
+  
+        this.ngOnChanges()
+      })
 
 
   }

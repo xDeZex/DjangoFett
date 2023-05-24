@@ -17,6 +17,9 @@ export class ClockScrollComponent {
 
   windowHeight: number = 0
 
+  cacheClock: any | null = null
+  cacheTimeSeries: any | null = null
+
   ngOnInit() {
     this.subscription = this.scrollService.scrollY$.subscribe((res) => {
       this.scroll = res
