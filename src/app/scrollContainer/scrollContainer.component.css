@@ -1,0 +1,19 @@
+.scrollContainer{
+    position: absolute;
+}
+
+.fixed{
+    position: fixed;
+}
+
+.rightFixed{
+    right: 0;
+    width: 50%;
+}
+.leftFixed{
+    left: 0;
+    width: 50%;
+}
+.fullWidth{
+    width: 100%;
+}

@@ -1,0 +1,16 @@
+export interface clockModel {
+    ArbetadeTimmar: Array<Array<number>>,
+    Detaljhandel: Array<Array<number>>,
+    IndustrinsOrderingång: Array<Array<number>>,
+    Sysselsättning: Array<Array<number>>,
+    BNPKvartal: Array<Array<number>>,
+    BNPMånad: Array<Array<number>>,
+    HushållensKonfindens: Array<Array<number>>,
+    HushållensKonsumtion: Array<Array<number>>,
+    Lastbilar: Array<Array<number>>,
+    Personbilar: Array<Array<number>>,
+    NäringslivetsEfterfrågan: Array<Array<number>>,
+    NäringslivetsProduktion: Array<Array<number>>,
+    Varuexport: Array<Array<number>>,
+    Varuimport: Array<Array<number>>,
+}

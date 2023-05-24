@@ -1,0 +1,61 @@
+.clockContainer{
+    padding-top: 3em;
+}
+
+.figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+figure{
+    margin: 0;
+}
+
+.legendMenu{
+    display: flex;
+    width: 50%;
+}
+
+.legendMenu_month{
+    flex: 1 1 50%;
+}
+
+.legendMenuButton{
+    cursor: pointer;
+    background: none;
+    border: 0;
+
+}
+
+.legendMenuButton_img{
+    width: 20px;
+    height: 20px;
+    transform: rotate(-90deg);
+    transition: transform 0.5s ease-in-out;
+}
+
+.legendMenu:has( + .doNotShow) .legendMenuButton_img {
+    transform: rotate(0deg);
+}
+
+.legendSVG {
+    height: 195px;
+}
+
+::ng-deep .legendSVG svg{
+    transition: height 0.5s ease-in-out;
+}
+
+::ng-deep .legendSVG.doNotShow svg{
+    height: 0;
+}
+
+::ng-deep .deselected {
+    text-decoration:line-through;
+}
+
+::ng-deep g.deselected path{
+    visibility: hidden;
+}

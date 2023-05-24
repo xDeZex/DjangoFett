@@ -1,0 +1,42 @@
+<div style="display: block;" [style.height.px]="windowHeight*6">
+    <app-first-text
+            
+        [scrollLower]="0"
+        [scrollUpper]="windowHeight * 1"
+        [scroll]="scroll"
+    ></app-first-text>
+    <app-clock 
+        [graphName]="'clock'"
+        id="clock" 
+        [scrollLower]="windowHeight * 1"
+        [scrollUpper]="windowHeight * 3"
+        [scroll]="scroll" 
+        [scrollMonthLower]="'2020M01'"
+        [scrollMonthUpper]="'2021M07'"
+        [scrollDisplayGap]="6"
+        [leftFixed]="true"
+        [overhang]="windowHeight/3"
+    ></app-clock>
+
+    <app-intro-text
+        [scrollLower]="windowHeight * 1"
+        [scrollUpper]="windowHeight * 3.5"
+        [scroll]="scroll" 
+        [rightFixed]="true"
+    ></app-intro-text>
+
+    <app-intro-text
+        [scrollLower]="windowHeight * 4"
+        [scrollUpper]="windowHeight * 5"
+        [scroll]="scroll" 
+        [leftFixed]="true"
+    ></app-intro-text>
+
+    <app-clock 
+        [graphName]="'endClock'"
+        id="clock" 
+        [scrollLower]="windowHeight * 5"
+        [scrollUpper]="windowHeight * 6"
+        [scroll]="scroll" 
+    ></app-clock>
+</div>

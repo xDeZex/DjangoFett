@@ -1,0 +1,14 @@
+<div #clock class="clockContainer scrollContainer" [class.fixed]="fixed" [style.top.px]="top" [class.rightFixed]="rightFixed" [class.leftFixed]="leftFixed" [class.fullWidth]="!leftFixed && !rightFixed">
+    <div class="figure">
+        <figure [id]="graphName"></figure>
+        <div class="legendMenu">
+            <div class="legendMenu_month">
+                {{ monthFirst}} - {{ monthLast}}
+            </div>
+            <button (click)="legendMenuButton($event)" class="legendMenuButton">
+                <img src="../../assets/kebab.png" class="legendMenuButton_img">
+            </button>
+        </div>
+        <figure [id]="graphName + '-legend'" class="doNotShow legendSVG"></figure>
+    </div>
+</div>

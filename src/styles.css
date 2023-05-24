@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+}
+
+html, body {
+    margin: 0;
+}
+
+:root{
+    font-size: clamp(20px,1vw,25px);
+}
+
+text{
+    font-family: 'PT Mono', monospace;
+    text-transform: uppercase;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: 'PT Mono', monospace;
+    text-transform: uppercase;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+*{
+    box-sizing: border-box;
+        
+    font-family: 'Roboto', sans-serif;
+}

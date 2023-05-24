@@ -1,0 +1,51 @@
+.firstContainer{
+    display: grid;
+    margin: 0 3em;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 10vh 1fr 30vh 1fr;
+    grid-template-areas:    ". ."
+                            "title text1"
+                            "graph text2"
+                            ". arrow";
+    gap: 2em;
+}
+
+h1{
+    text-align: center;
+}
+
+.first_textContainer {
+    display: flex;
+    flex-direction: column;
+
+    grid-area: text1;
+    justify-content: space-evenly;
+}
+
+.firstContainer h1, .firstContainer p{
+    margin: 0;
+}
+
+.text1{
+    grid-area: text1;
+    display: flex;
+    align-items: center;
+}
+
+.text2{
+    grid-area: text2;
+    display: flex;
+    align-items: center;
+}
+
+.title{
+    grid-area: title;
+}
+
+.graph{
+    grid-area: graph;
+}
+
+.arrow{
+    grid-area: arrow;
+}
